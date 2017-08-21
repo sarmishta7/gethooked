@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+
+<!--document.getElementById("myP").style.visibility="hidden";-->
+<head profile="http://gmpg.org/xfn/11">
+<title>MA Fishing</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="styles/layout.css" type="text/css" />
+</head>
+<body id="top">
+<div class="wrapper col1">
+  <div id="topbar">
+  </div>
+</div>
+<div class="wrapper col2">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="#">Get Hooked</a></h1>
+      <p>A learning fishing game for the state of Massachussetts</p>
+    </div>
+    
+  </div> 
+</div>
+<div class="wrapper col3">
+  <div id="gallery">
+  <img src="images/mapbg.gif" width="1024" height="566" />
+  <!--br class="clear" /-->
+  <img id="p1" src="images/pin1.png"  onclick="loc1();" />
+  <img id="p2" src="images/pin2.png" onclick="loc2();" />
+  <img id="p3" src="images/pin3.png"  onclick="loc3();" />
+  <img id="p4" src="images/pin4.png" onclick="loc4();" />
+  <img id="p5" src="images/pin5.png"  onclick="loc5();" />
+  <img id="p6" src="images/pin6.png" onclick="loc6();" />
+  <img id="tBar" src="images/top.png"  />
+  <img id="bBar" src="images/bottom.png"  />
+  <textarea id="bud" type="text"  readonly></textarea>
+  <textarea id="tar1" type="text" readonly></textarea>
+  <textarea id="tar2" type="text" readonly></textarea>
+  <textarea id="tar3" type="text" readonly></textarea>
+  <textarea id="tar4" type="text" readonly></textarea>
+  <textarea id="bait1" type="text" readonly>0</textarea> 
+  <textarea id="bait2" type="text" readonly>0</textarea> 
+  <img id="Back1" onclick="back()" src="images/town_l.png"/>
+  <img id="inst" onclick="instructions()" src="images/i.png"  />
+  
+  
+
+  </div>
+</div>
+
+<div class="wrapper col5">
+  <div id="container">
+    <br class="clear" />
+  </div>
+</div>
+ 
+
+<script>
+var bal;
+var tar1, tar2, tar3, tar4;
+var bait1;
+var bait2;
+(function (global) {
+	document.getElementById("bud").innerHTML = global.localStorage.getItem("budget");
+	bal = global.localStorage.getItem("budget");
+	document.getElementById("tar1").innerHTML = global.localStorage.getItem("targ1");
+	tar1 = global.localStorage.getItem("targ1");
+	tar2 = global.localStorage.getItem("targ2");
+	tar3 = global.localStorage.getItem("targ3");	
+	tar4 = global.localStorage.getItem("targ4");
+	var x1 = tar1.substring(0,1);
+	var x2 = tar2.substring(0,1);
+	var x3 = tar3.substring(0,1);
+	var x4 = tar4.substring(0,1);
+	var z1 = parseInt(x1);
+	var z2 = parseInt(x2);
+	var z3 = parseInt(x3);
+	var z4 = parseInt(x4);
+	document.getElementById("tar2").innerHTML = global.localStorage.getItem("targ2");
+	document.getElementById("tar3").innerHTML = global.localStorage.getItem("targ3");
+	document.getElementById("tar4").innerHTML = global.localStorage.getItem("targ4");
+	document.getElementById("bait1").innerHTML = global.localStorage.getItem("bait1");
+	document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+	bait1 = parseInt(global.localStorage.getItem("bait1"));
+	bait2 = parseInt(global.localStorage.getItem("bait2"));
+	var lev = global.localStorage.getItem("level");
+	if(z1 >= 5 && z2 >=5 && z3 >= 5 && z4 >=5 && lev == "e")window.location.href = "win.html";
+	if(z1 >= 6 && z2 >=6 && z3 >= 6 && z4 >=6 && lev == "m")window.location.href = "win.html";
+	if(z1 >= 8 && z2 >=8 && z3 >= 8 && z4 >=8 && lev == "h")window.location.href = "winF.html";   
+	if(bal=="$0" && bait1==0 && bait2==0)window.location.href = "lose.html";
+}(window));
+function loc1() {
+	window.location.href = "rangerCR.html";
+}
+function loc2() {
+	window.location.href = "rangerJP.html";
+}
+function loc3() {
+	window.location.href = "rangerHP.html";
+}
+function loc4() {
+	window.location.href = "rangerCI.html";
+}
+function loc5() {
+	window.location.href = "rangerSI.html";
+}
+function loc6() {
+	window.location.href = "rangerHG.html";
+}
+function Forward() {
+		window.location.href = "cart1.html";
+}
+function back() {
+		window.location.href = "town.html";
+}
+function instructions() {
+window.location.href = "instr.html";
+}
+</script>
+
+</body>
+</html>
