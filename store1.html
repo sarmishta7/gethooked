@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+
+<!--document.getElementById("myP").style.visibility="hidden";-->
+<head profile="http://gmpg.org/xfn/11">
+<title>MA Fishing</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="styles/layout.css" type="text/css" />
+</head>
+<body id="top">
+<div class="wrapper col1">
+  <div id="topbar">
+  </div>
+</div>
+<div class="wrapper col2">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="#">Get Hooked</a></h1>
+      <p>A learning fishing game for the state of Massachussetts</p>
+    </div>
+     
+  </div>
+</div>
+<div class="wrapper col3">
+  <div id="gallery">
+  <img src="images/Store_young.gif" width="1024" height="566" />
+  <!--br class="clear" /-->
+  <img id="rod1_sm" src="images/rod1_sm.png"  onclick="rod_clicked();" />
+  <img id="rod_big" src="images/rod1_big.png"  width="287" height="137"/>
+  <img id="worms_sm" src="images/worms_sm.png" onclick="worms_clicked();" />
+  <img id="worms_big" src="images/worms_big.png"  width="221" height="122"/>
+  <img id="bait_sm" src="images/bait_sm.png" onclick="bait_clicked();" />
+  <img id="bait_big" src="images/bait_big.png"  />
+  <img id="vest_sm" src="images/vest1_sm.png" onclick="vest_clicked();" />
+  <img id="vest_big" src="images/vest1_big.png"  />
+  <img id="tBar" src="images/top.png"  />
+  <img id="bBar" src="images/bottom.png"  />
+  <textarea id="sBuble" type="text"  readonly>La La la lalalala... Ohh, um..Hiii..Welcome to Hook ‘Em! I’ll try to answer some questions you might have. You can do so by clicking on any equipment to know more, I
+guess.!</textarea>
+  <textarea id="bud" type="text"  readonly></textarea>
+  <textarea id="tar1" type="text" readonly></textarea>
+  <textarea id="tar2" type="text" readonly></textarea>
+  <textarea id="tar3" type="text" readonly></textarea>
+  <textarea id="tar4" type="text" readonly></textarea>
+  <textarea id="bait1" type="text" readonly>0</textarea> 
+  <textarea id="bait2" type="text" readonly>0</textarea> 
+  <img id="Back" onclick="back()" src="images/exit.gif"/>
+  <img id="For" onclick="Forward()" src="images/chk.gif"  />
+  <img id="inst" onclick="instructions()" src="images/i.png"  />
+  
+
+  </div>
+</div>
+
+<div class="wrapper col5">
+  <div id="container">
+    <br class="clear" />
+  </div>
+</div>
+ 
+
+<script>
+(function (global) {
+    document.getElementById("bud").innerHTML = global.localStorage.getItem("budget");
+	document.getElementById("tar1").innerHTML = global.localStorage.getItem("targ1");
+	document.getElementById("tar2").innerHTML = global.localStorage.getItem("targ2");
+	document.getElementById("tar3").innerHTML = global.localStorage.getItem("targ3");
+	document.getElementById("tar4").innerHTML = global.localStorage.getItem("targ4");
+	document.getElementById("bait1").innerHTML = global.localStorage.getItem("bait1");
+	document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+}(window));
+function rod_clicked() {
+		document.getElementById("worms_big").style.visibility = "hidden";
+    document.getElementById("rod_big").style.visibility = "visible";
+	document.getElementById("bait_big").style.visibility = "hidden";
+	document.getElementById("vest_big").style.visibility = "hidden";
+	document.getElementById("sBuble").innerHTML = "Um, I dunno, beginners like these spin casting ones. I guess they're super easy to use, plus, at $25, they're the cheapest ones we sell!";
+}
+function worms_clicked() {
+    document.getElementById("rod_big").style.visibility = "hidden";
+	document.getElementById("worms_big").style.visibility = "visible";
+	document.getElementById("bait_big").style.visibility = "hidden";
+	document.getElementById("vest_big").style.visibility = "hidden";
+	document.getElementById("sBuble").innerHTML = "OMG! Whatever we have in there are like $3.00 each, I think. Close it fast, though, it totally smells in there!!";
+}
+function bait_clicked() {
+    document.getElementById("rod_big").style.visibility = "hidden";
+	document.getElementById("worms_big").style.visibility = "hidden";
+	document.getElementById("vest_big").style.visibility = "hidden";
+	document.getElementById("bait_big").style.visibility = "visible";
+	document.getElementById("sBuble").innerHTML = "Oh these small fish thingys, people buy them a lot! Dunno why. Maybe coz they are cute, aren’t they?";
+}
+function vest_clicked() {
+    document.getElementById("rod_big").style.visibility = "hidden";
+	document.getElementById("worms_big").style.visibility = "hidden";
+	document.getElementById("bait_big").style.visibility = "hidden";
+	document.getElementById("vest_big").style.visibility = "visible";
+	document.getElementById("sBuble").innerHTML = "Aww! This stylish, cute vest goes perfectly with a pair of awesome shorts and boots. Don’t you think?";
+}
+function Forward() {
+		window.location.href = "cart1.html";
+}
+function back() {
+		window.location.href = "town.html";
+}
+function instructions() {
+window.location.href = "instr.html";
+}
+</script>
+
+</body>
+</html>

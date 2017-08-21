@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+
+<!--document.getElementById("myP").style.visibility="hidden";-->
+<head profile="http://gmpg.org/xfn/11">
+<title>MA Fishing</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="styles/layout.css" type="text/css" />
+</head>
+<body id="top">
+<div class="wrapper col1">
+  <div id="topbar">
+  </div>
+</div>
+<div class="wrapper col2">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="#">Get Hooked</a></h1>
+      <p>A learning fishing game for the state of Massachussetts</p>
+    </div>
+    
+  </div>
+</div>
+<div id="gallery">
+  
+  <img src="images/town_bg.gif" width="1024" height="566" /><!--br class="clear" />
+  <a href="index copy.html"><img id="try" src="/f/btn-start.png" /></a-->
+    <img id="tBar" src="images/top.png"  />
+  <img id="bBar" src="images/bottom.png"  /> 
+  <img id="hoverable1" src="images/frame.gif"  />
+  <img id="hoverable2" src="images/frame.gif"  />
+  <img id="hoverable3" src="images/frame2.gif"  /> 
+  <img id="store1" onclick="S1()" onmouseover="hover1()" src="images/shop1.png"  />
+  <img id="store2" onclick="S2()" onmouseover="hover2()" src="images/shop2.png"  />
+  <img id="store3" onclick="S3()" onmouseover="hover3()" src="images/shop3.png"  />    
+  <img id="tBar" src="images/top.png"  />
+  <img id="bBar" src="images/bottom.png"  /> 
+  <textarea id="bud" type="text"  readonly></textarea>
+  <textarea id="tar1" type="text" readonly></textarea>
+  <textarea id="tar2" type="text" readonly></textarea>
+  <textarea id="tar3" type="text" readonly></textarea>
+  <textarea id="tar4" type="text" readonly></textarea>
+  <textarea id="bait1" type="text" readonly>0</textarea> 
+  <textarea id="bait2" type="text" readonly>0</textarea>
+  <img id="For" onclick="Forward()" src="images/map.gif"  />
+      <img id="inst" onclick="instructions()" src="images/i.png"  />
+
+</div>
+ 
+
+
+ 
+
+<script>
+(function (global) {
+    document.getElementById("bud").innerHTML = global.localStorage.getItem("budget");
+	document.getElementById("tar1").innerHTML = global.localStorage.getItem("targ1");
+	document.getElementById("tar2").innerHTML = global.localStorage.getItem("targ2");
+	document.getElementById("tar3").innerHTML = global.localStorage.getItem("targ3");
+	document.getElementById("tar4").innerHTML = global.localStorage.getItem("targ4");
+	document.getElementById("bait1").innerHTML = global.localStorage.getItem("bait1");
+	document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+}(window));
+function hover1() {
+		document.getElementById("hoverable1").style.visibility = "visible";
+		document.getElementById("hoverable2").style.visibility = "hidden";
+		document.getElementById("hoverable3").style.visibility = "hidden";
+}
+function hover2() {
+		document.getElementById("hoverable2").style.visibility = "visible";
+		document.getElementById("hoverable1").style.visibility = "hidden";
+		document.getElementById("hoverable3").style.visibility = "hidden";
+}
+function hover3() {
+		document.getElementById("hoverable3").style.visibility = "visible";
+		document.getElementById("hoverable2").style.visibility = "hidden";
+		document.getElementById("hoverable1").style.visibility = "hidden";
+}
+function S1() {
+		window.location.href = "store1.html";
+}
+function S2() {
+		window.location.href = "store2.html";
+}
+function S3() {
+		window.location.href = "store3.html";
+}
+function Forward() {
+		window.location.href = "map.html";
+}
+function instructions() {
+		window.location.href = "instr.html";
+}
+</script>
+
+</body>
+</html>

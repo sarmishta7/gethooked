@@ -1,0 +1,559 @@
+
+
+body{
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-family:verdana, Arial, Helvetica, sans-serif;
+	color:#CCCCCC;
+	background-color: black;
+	}
+
+img{border:0; padding:0; margin:0;}
+.justify{text-align:justify;}
+.bold{font-weight:bold;}
+.center{text-align:center;}
+.right{text-align:right;}
+.nostart {list-style-type:none; margin:0; padding:0;}
+.clear{clear: both;}
+br.clear{clear:both; margin-top:-15px;}
+a{outline:none; text-decoration:none;}
+
+.fl_left{float:left;}
+.fl_right{float:right;}
+
+.imgl, .imgr{border:1px solid #666666; padding:5px;}
+.imgl{float:left; margin:0 8px 8px 0; clear:left;}
+.imgr{float:right; margin:0 0 8px 8px; clear:right;}
+
+/* ----------------------------------------------Wrapper-------------------------------------
+
+div.wrapper{
+	display:block;
+	width:100%;
+	margin:0;
+	text-align:left;
+	}
+
+div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6{
+	margin:0 0 20px 0;
+	padding:0 0 8px 0;
+	font-size:22px;
+	font-weight:normal;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	border-bottom:1px dashed #DDDDDD;
+	}
+
+.col1{color:#333333; background-color:#000000;}
+.col2{color:#DBDBDB; background-color:#000000; border-bottom:1px solid #3B3B3B;}
+.col3{color:#DBDBDB; background-color:#000000; border-bottom:1px solid #3B3B3B;}
+.col4{color:#DBDBDB; background-color:#000000; border-bottom:1px solid #3B3B3B;}
+.col5{color:#CCCCCC; background-color:#000000; border-bottom:1px solid #3B3B3B;}
+.col5 a{color:#99CC00; background-color:#000000;}
+.col6{color:#FFFFFF; background-color:#1B1B1B; border-bottom:1px solid #3B3B3B;}
+.col7, .col7 a{color:#CCCCCC; background-color:#2E2E2E;}
+
+/* ----------------------------------------------Generalise-------------------------------------*/
+
+#header{
+	position:fixed;
+	margin:0 100px 0;
+	display:block;
+	width:10240px;
+	}
+	#gallery{
+	position:fixed;
+	margin:85px 100px 0;
+	display:block;
+	width:10240px;		
+	}
+	#footer, #copyright{
+	position:fixed;
+	margin:700px 100px 0;
+	display:block;
+	width:10240px;
+		
+	}
+
+/* ----------------------------------------------TopBar-------------------------------------*/
+
+#topbar{
+	height:25px;
+	padding:10px 0;
+	}
+
+/* ----------------------------------------------Header-------------------------------------*/
+
+#header{
+	z-index:1000;
+	padding:0 0 20px 0;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	}
+
+#header h1, #header p{
+	margin:0;
+	padding:0;
+	border:none;
+	clear:left;
+	font-size:16px;
+	}
+
+#header h1{
+	margin-bottom:5px;
+	font-size:36px;
+	}
+
+#header h1 a{
+	color:#DBDBDB;
+	background-color:#000000;
+	}
+
+input {
+background-color: rgba(0,0,0,0);
+color: black;
+font-size:22px;
+text-align:center;
+border: none;
+}
+textarea {
+background-color: rgba(0,0,0,0);
+color: orange;
+font-size:22px;
+text-align:center;
+border: none;
+}
+
+
+/* ----------------------------------------------Content-------------------------------------*/
+
+#container{
+	padding:15px 0;
+	}
+
+#container h1, #container h2, #container h3, #container h4, #container h5, #container h6{
+	margin:0 0 15px 0;
+	padding:0 0 8px 0;
+	color:#CCCCCC;
+	background-color:#000000;
+	border-bottom:1px solid #CCCCCC;
+	overflow:scroll;
+	}
+
+#content{
+	display:block;
+	float:left;
+	width:600px;
+	}
+#replay{
+    position: fixed;
+    top: 560px;
+    left: 469px;
+	}
+#pagain{
+    position: fixed;
+    top: 567px;
+    left: 464px;
+	}
+#pag{
+    position: fixed;
+    top: 585px;
+    left: 481px;
+	}
+#startB{
+    position: fixed;
+    top: 520px;
+    left: 540px;
+	}	
+#tBar{
+    position: fixed;
+    top: 129px;
+    left: 96px;
+	}
+#inst{
+    position: fixed;
+    top: 129px;
+    left: 101px;
+	}
+#bud{
+    position: fixed;
+    top: 149px;
+    left: 244px;
+	}
+#tar1{
+    position: fixed;
+    top: 150px;
+    left: 465px;
+	}
+#tar2{
+    position: fixed;
+    top: 150px;
+    left: 594px;
+	}
+#tar3{
+    position: fixed;
+    top: 150px;
+    left: 722px;
+	}
+#tar4{
+    position: fixed;
+    top: 150px;
+    left: 865px;
+	}
+#bait1{
+    position: fixed;
+    top: 647px;
+    left: 458px;
+	}
+#bait2{
+    position: fixed;
+    top: 647px;
+    left: 548px;
+	}						
+#bBar{
+    position: fixed;
+    top: 636px;
+    left: 100px;
+	}
+#fish{
+    position: fixed;
+    top: 479px;
+    left: 305px;
+	}
+#how{
+    position: fixed;
+    top: 479px;
+    left: 592px;
+	}	
+#eB{
+    position: fixed;
+    top: 292px;
+    left: 454px;
+	}
+#mB{
+    position: fixed;
+    top: 380px;
+    left: 454px;
+	visibility: hidden;
+	}
+#hB{
+    position: fixed;
+    top: 467px;
+    left: 454px;
+	visibility: hidden;
+	}
+#pl1{
+    position: fixed;
+    top: 331px;
+    left: 636px;
+	}
+#pl2{
+    position: fixed;
+    top: 403px;
+    left: 636px;
+	}
+#pl3{
+    position: fixed;
+    top: 476px;
+    left: 636px;
+	}
+#pl4{
+    position: fixed;
+    top: 547px;
+    left: 637px;
+	}
+#quan1{
+    position: fixed;
+    top: 331px;
+    left: 590px;
+	}
+#quan2{
+    position: fixed;
+    top: 403px;
+    left: 590px;
+	}
+#quan3{
+    position: fixed;
+    top: 476px;
+    left: 590px;
+	}
+#quan4{
+    position: fixed;
+    top: 547px;
+    left: 590px;
+	}
+#ti1{
+    position: fixed;
+    top: 331px;
+    left: 840px;
+	}
+#ti2{
+    position: fixed;
+    top: 403px;
+    left: 840px;
+	}
+#ti3{
+    position: fixed;
+    top: 476px;
+    left: 840px;
+	}
+#ti4{
+    position: fixed;
+    top: 547px;
+    left: 840px;
+	}	
+#tot{
+    position: fixed;
+    top: 606px;
+    left: 840px;
+	}	
+#mi1{
+    position: fixed;
+    top: 331px;
+    left: 553px;
+	}
+#mi2{
+    position: fixed;
+    top: 404px;
+    left: 553px;
+	}
+#mi3{
+    position: fixed;
+    top: 476px;
+    left: 553px;
+	}
+#mi4{
+    position: fixed;
+    top: 548px;
+    left: 553px;
+	}						
+#For{
+    position: fixed;
+    top: 593px;
+    left: 1015px;
+	}
+#For1{
+    position: fixed;
+    top: 594px;
+    left: 1004px;
+	}
+#For2{
+    position: fixed;
+    top: 593px;
+    left: 835px;
+	}
+#cont{
+    position: fixed;
+    top: 601px;
+    left: 997px;
+	}		
+#Back{
+    position: fixed;
+    top: 593px;
+    left: 100px;
+	}
+#Back1{
+    position: fixed;
+    top: 597px;
+    left: 100px;
+	}
+#store1{
+    position: fixed;
+    top: 186px;
+    left: 120px;
+	}
+#store2{
+    position: fixed;
+    top: 184px;
+    left: 472px;
+	}
+#store3{
+    position: fixed;
+    top: 148px;
+    left: 786px;
+	}
+#hoverable1{
+	visibility:hidden;
+	position: fixed;
+    left: 100px;
+	}
+#hoverable2{
+    visibility:hidden;
+	position: fixed;
+    left: 462px;
+}
+#hoverable3{
+    visibility:hidden;
+	position: fixed;
+    left: 824px;
+}
+#rod_sm{
+    position: fixed;
+    top: 229px;
+    left: 798px;
+	}
+#rod1_sm{
+    position: fixed;
+    top: 230px;
+    left: 801px;
+	}	
+#worms_sm{
+    position: fixed;
+    top: 343px;
+    left: 805px;
+	}
+#bait_sm{
+    position: fixed;
+    top: 423px;
+    left: 805px;
+	}
+#vest_sm{
+    position: fixed;
+    top: 504px;
+    left: 808px;
+	}
+#vest2_sm{
+    position: fixed;
+    top: 501px;
+    left: 817px;
+	}	
+#rod_big, #worms_big, #bait_big, #vest_big{
+	position: fixed;
+    top: 420px;
+    left: 470px;
+	visibility:hidden;
+	}
+#p2{
+    position: fixed;
+    top: 242px;
+    left: 140px;
+	}
+#p1{
+    position: fixed;
+    top: 207px;
+    left: 432px;
+	}
+#p3{
+    position: fixed;
+    top: 458px;
+    left: 416px;
+	}
+#p4{
+    position: fixed;
+    top: 184px;
+    left: 745px;
+	}
+#p6{
+    position: fixed;
+    top: 424px;
+    left: 779px;
+	}
+#p5{
+    position: fixed;
+    top: 288px;
+    left: 974px;
+	}
+#rBuble{
+    position: fixed;
+    top: 234px;
+    left: 295px;
+	width: 480px;
+	height:145px;
+	color: white;
+	}	
+#sBuble{
+    position: fixed;
+    top: 239px;
+    left: 194px;
+	width: 480px;
+	height:145px;
+	color: #cacaca;
+	background-color: rgba(0,0,0,0);
+	}							
+
+/* ------Comments-----*/
+
+#comments{margin-bottom:40px;}
+
+#comments .commentlist {margin:0; padding:0;}
+
+#comments .commentlist ul{margin:0; padding:0; list-style:none;}
+
+#comments .commentlist li.comment_odd, #comments .commentlist li.comment_even{margin:0 0 10px 0; padding:15px; list-style:none;}
+
+#comments .commentlist li.comment_odd{color:#666666; background-color:#F7F7F7;}
+#comments .commentlist li.comment_odd a{color:#3E7060; background-color:#F7F7F7;}
+
+#comments .commentlist li.comment_even{color:#666666; background-color:#E8E8E8;}
+#comments .commentlist li.comment_even a{color:#3E7060; background-color:#E8E8E8;}
+
+#comments .commentlist .author .name{font-weight:bold;}
+#comments .commentlist .submitdate{font-size:smaller;}
+
+#comments .commentlist p{margin:10px 5px 10px 0; padding:0; font-weight: normal;text-transform: none;}
+
+#comments .commentlist li .avatar{float:right; border:1px solid #EEEEEE; margin:0 0 0 10px;}
+
+/* ----------------------------------------------Footer-------------------------------------*/
+
+#footer{
+	padding:20px 0;
+	}
+
+#footer a{
+	color:#99CC00;
+	background-color:#1B1B1B;
+	}
+
+#footer h2{
+	margin:0 0 15px 0;
+	padding:0 0 8px 0;
+	font-size:22px;
+	font-weight:normal;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	color:#CCCCCC;
+	background-color:#1B1B1B;
+	line-height:normal;
+	border-bottom:1px dashed #CCCCCC;
+	}
+
+#contactform{
+	display:block;
+	float:left;
+	width:350px;
+	}
+
+/* ----------------------------------------------Copyright-------------------------------------*/
+
+#copyright{
+	padding:20px 0;
+	}
+
+#copyright p{
+	display:block;
+	float:right;
+	text-align:right;
+	margin:0;
+	padding:0;
+	width:200px;
+	}
+
+#copyright ul{
+	display:block;
+	float:left;
+	margin:0;
+	padding:0;
+	width:700px;
+	}
+
+#copyright li{
+	display:inline;
+	margin-right:8px;
+	padding-right:10px;
+	border-right:1px solid #CCCCCC;
+	}
+
+#copyright li.last{
+	margin-right:0;
+	padding-right:0;
+	border-right:none;
+	}

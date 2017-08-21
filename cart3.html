@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+
+<!--document.getElementById("myP").style.visibility="hidden";-->
+<head profile="http://gmpg.org/xfn/11">
+<title>MA Fishing</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="styles/layout.css" type="text/css" />
+</head>
+<body id="top">
+<div class="wrapper col1">
+  <div id="topbar">
+  </div>
+</div>
+<div class="wrapper col2">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="#">Get Hooked</a></h1>
+      <p>A learning fishing game for the state of Massachussetts</p>
+    </div>
+     
+  </div>
+</div>
+<div class="wrapper col3">
+  <div id="gallery">
+  <img src="images/Cart_old.png" width="1024" height="566" /><!--br class="clear"  id="For" onclick="Forward()" /-->
+  <img id="tBar" src="images/top.png"  />
+  <img id="bBar" src="images/bottom.png"  /> 
+  <textarea id="bud" type="text"  readonly></textarea>
+  <textarea id="tar1" type="text" readonly></textarea>
+  <textarea id="tar2" type="text" readonly></textarea>
+  <textarea id="tar3" type="text" readonly></textarea>
+  <textarea id="tar4" type="text" readonly></textarea>
+  <textarea id="bait1" type="text" readonly></textarea> 
+  <textarea id="bait2" type="text" readonly></textarea>  
+  <input id="quan1" type="text" value="0" size="1" readonly/>
+  <input id="quan2" type="text" value="0" size="1" readonly/>
+  <input id="quan3" type="text" value="0" size="1" readonly/>
+  <input id="quan4" type="text" value="0" size="1" readonly/> 
+  <input id="ti1" type="text" value="0" size="1" readonly/>
+  <input id="ti2" type="text" value="0" size="1" readonly/>
+  <input id="ti3" type="text" value="0" size="1" readonly/>
+  <input id="ti4" type="text" value="0" size="1" readonly/>
+  <input id="tot" type="text" value="0" size="1" readonly/>       
+  <img id="pl1" onclick="plus1()" src="images/plus.png"  />
+  <img id="pl2" onclick="plus2()" src="images/plus.png"  />
+  <img id="pl3" onclick="plus3()" src="images/plus.png"  />
+  <img id="pl4" onclick="plus4()" src="images/plus.png"  />
+  <img id="mi1" onclick="minus1()" src="images/minus.png"  />
+  <img id="mi2" onclick="minus2()" src="images/minus.png"  />
+  <img id="mi3" onclick="minus3()" src="images/minus.png"  />
+  <img id="mi4" onclick="minus4()" src="images/minus.png"  />
+  <img id="Back" onclick="back()" src="images/back.gif"  />
+  <img id="For"  src="images/pay.gif"  />
+  <img id="inst" onclick="instructions()" src="images/i.png"  />
+
+  </div>
+</div>
+
+<div class="wrapper col5">
+  <div id="container">
+    <br class="clear" />
+  </div>
+</div>
+
+
+<script>
+var q1 = 0; //quantities
+var q2 = 0;
+var q3 = 0;
+var q4 = 0;
+var p1 = 75; //price
+var p2 = 2;
+var p3 = 3;
+var p4 = 25;
+var t1 = 0; //total per item = q*p 
+var t2 = 0;
+var t3 = 0;
+var t4 = 0;
+var total = 0; //total all items
+var bal;
+
+(function (global) {
+    document.getElementById("bud").innerHTML = global.localStorage.getItem("budget");
+	document.getElementById("tar1").innerHTML = global.localStorage.getItem("targ1");
+	document.getElementById("tar2").innerHTML = global.localStorage.getItem("targ2");
+	document.getElementById("tar3").innerHTML = global.localStorage.getItem("targ3");
+	document.getElementById("tar4").innerHTML = global.localStorage.getItem("targ4");
+	document.getElementById("bait1").innerHTML = global.localStorage.getItem("bait1");
+	document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+}(window));
+/*(function (global) {
+    document.getElementById("save").addEventListener("click", function () {
+        global.localStorage.setItem("budget", document.getElementById("input").value);
+    }, false);
+}(window));
+*///document.getElementById("quan1").style.visibility = "visible";
+function back() {
+		window.location.href = "store3.html";
+}
+(function (global) {
+    document.getElementById("For").addEventListener("click", function () {
+        var x = document.getElementById("bud").innerHTML.substring(1);
+		var z = parseInt(x);
+		if(total <= z) {
+			var y = z-total;
+			var nB = "$" + y;
+			global.localStorage.setItem("budget", nB);
+			var newq2 = parseInt(global.localStorage.getItem("bait1")) + q2;
+			var newq3 = parseInt(global.localStorage.getItem("bait2")) + q3;
+			if(q1 > 0)global.localStorage.setItem("equip", "wise");
+			if(q2 > 0)global.localStorage.setItem("bait1", newq2);
+			if(q3 > 0)global.localStorage.setItem("bait2", newq3);
+			if(q4 > 0)global.localStorage.setItem("vest", "exist");
+			if(q1 > 0 && q2 > 0) {
+				alert("Thank you for buying a Rod and Reel and fresh water bait from my store, please accept this salt water bait as a gift from me.");
+				global.localStorage.setItem("bait2", newq3+1);	
+			}
+			bal = global.localStorage.getItem("budget");
+			if(bal=="$0" && newq2==0 && newq3==0)window.location.href = "lose.html";
+			window.location.href = "Town.html";
+		}else{
+			alert("Sorry, you do not have enough money to make that purchase!")
+
+			}
+		
+    }, false);
+}(window));
+function plus1() {
+		q1 += 1;
+		t1 = q1*p1;
+		total = t1+t2+t3+t4;
+		document.getElementById("quan1").value = q1;
+		document.getElementById("ti1").value = t1;
+		document.getElementById("tot").value = total;
+}
+function plus2() {
+		q2 += 1;
+		t2 = q2*p2;
+		total = t1+t2+t3+t4;
+		document.getElementById("quan2").value = q2;
+		document.getElementById("ti2").value = t2;
+		document.getElementById("tot").value = total;
+}
+function plus3() {
+		q3 += 1;
+		t3 = q3*p3;
+		total = t1+t2+t3+t4;
+		document.getElementById("quan3").value = q3;
+		document.getElementById("ti3").value = t3;	
+		document.getElementById("tot").value = total;	
+}
+function plus4() {
+		q4 += 1;
+		t4 = q4*p4;
+		total = t1+t2+t3+t4;
+		document.getElementById("quan4").value = q4;
+		document.getElementById("ti4").value = t4;	
+		document.getElementById("tot").value = total;	
+}
+function minus1() {
+		if(q1 !=0) q1 -= 1;
+		t1 = q1*p1;
+		total = t1+t2+t3+t4;
+		document.getElementById("quan1").value = q1;
+		document.getElementById("ti1").value = t1;	
+		document.getElementById("tot").value = total;	
+}
+function minus2() {
+		if(q2 !=0) q2 -= 1;
+		t2 = q2*p2;
+		total = t1+t2+t3+t4;
+		document.getElementById("quan2").value = q2;
+		document.getElementById("ti2").value = t2;	
+		document.getElementById("tot").value = total;	
+}
+function minus3() {
+		if(q3 !=0) q3 -= 1;
+		t3 = q3*p3;
+		total = t1+t2+t3+t4;
+		document.getElementById("quan3").value = q3;
+		document.getElementById("ti3").value = t3;
+		document.getElementById("tot").value = total;
+}
+function minus4() {
+		if(q4 !=0) q4 -= 1;
+		t4 = q4*p4;
+		total = t1+t2+t3+t4;
+		document.getElementById("quan4").value = q4;
+		document.getElementById("ti4").value = t4;	
+		document.getElementById("tot").value = total;			
+}
+function instructions() {
+window.location.href = "instr.html";
+}
+</script>
+
+</body>
+</html>

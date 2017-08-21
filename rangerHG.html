@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+
+<!--document.getElementById("myP").style.visibility="hidden";-->
+<head profile="http://gmpg.org/xfn/11">
+<title>MA Fishing</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="styles/layout.css" type="text/css" />
+</head>
+<body id="top">
+<div class="wrapper col1">
+  <div id="topbar">
+  </div>
+</div>
+<div class="wrapper col2">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="#">Get Hooked</a></h1>
+      <p>A learning fishing game for the state of Massachussetts</p>
+    </div>
+    
+  </div> 
+</div>
+<div class="wrapper col3">
+  <div id="gallery">
+     
+  <img src="images/ranger_hull.png" width="1024" height="566" />
+  <img id="fBuble" src="images/fish_hg.png" style="visibility:hidden"/>
+  <img id="fish" onclick="fishT()" src="images/fish.png"  />
+  <img id="how" onclick="howT()" src="images/get.png"  />
+  <img id="tBar" src="images/top.png"  />
+  <img id="bBar" src="images/bottom.png"  /> 
+  <textarea id="rBuble" type="text"  readonly>Hull Gut is located at the end of the town of Hull. Hull Gut is the known name for the narrow channel that runs in there.  I can tell you more about fish species and travel cost if you want to.</textarea>
+  <textarea id="bud" type="text"  readonly></textarea>
+  <textarea id="tar1" type="text" readonly></textarea>
+  <textarea id="tar2" type="text" readonly></textarea>
+  <textarea id="tar3" type="text" readonly></textarea>
+  <textarea id="tar4" type="text" readonly></textarea>
+  <textarea id="bait1" type="text" readonly></textarea> 
+  <textarea id="bait2" type="text" readonly></textarea>
+  <!--br class="clear" /-->
+  <img id="Back" onclick="back()" src="images/map_l.png"  />
+  <img id="For1" onclick="Forward()" src="images/go.png"  /> <!-- onclick="Forward()" Loc1-2.html-->
+  <img id="inst" onclick="instructions()" src="images/i.png"  />
+
+  </div>
+</div>
+
+<div class="wrapper col5">
+  <div id="container">
+    <br class="clear" />
+  </div>
+</div>
+ 
+
+<script>
+var equip;
+(function (global) {
+    document.getElementById("bud").innerHTML = global.localStorage.getItem("budget");
+	document.getElementById("tar1").innerHTML = global.localStorage.getItem("targ1");
+	document.getElementById("tar2").innerHTML = global.localStorage.getItem("targ2");
+	document.getElementById("tar3").innerHTML = global.localStorage.getItem("targ3");
+	document.getElementById("tar4").innerHTML = global.localStorage.getItem("targ4");
+	document.getElementById("bait1").innerHTML = global.localStorage.getItem("bait1");
+	document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+	equip = global.localStorage.getItem("equip");
+	vest = global.localStorage.getItem("vest");
+	if(vest == "exist") document.getElementById("rBuble").innerHTML += " Nice vest, by they way!";
+	document.getElementById("For1").addEventListener("click", function () {
+		if(equip == "null"){
+			alert("You have to buy a rod and reel before going fishing.");
+		}/*else if(equip == "greedy"){
+			window.location.href = "greedy.html";
+		}*/else if(document.getElementById("bait2").innerHTML == 0){
+			alert("You have to buy salt water bait before going to a saltwater site.");
+		}else{
+			
+				var x = document.getElementById("bud").innerHTML.substring(1);
+				var z = parseInt(x);
+				if(z >= 5) {
+					var y = z-5;
+					var nB = "$" + y;
+					global.localStorage.setItem("budget", nB);
+					alert("Travelling! $5 gas expense paid");
+					window.location.href = "HG_game.html";
+				}else{
+					alert("Sorry, you do not have enough money to go to that location!");
+					}
+			}
+	}, false);
+}(window));
+function fishT() {
+		document.getElementById("rBuble").innerHTML = "";
+		document.getElementById("fBuble").style.visibility = "visible";
+		document.getElementById("fBuble").style.position = "fixed";
+		document.getElementById("fBuble").style.top = "216px";
+		document.getElementById("fBuble").style.left = "293px";
+}
+function howT() {
+		document.getElementById("rBuble").innerHTML = "Hull Gut is not readily transit accessible. It will cost you $5.00 in gas.";
+		document.getElementById("fBuble").style.visibility = "hidden";
+}
+
+function back() {
+		window.location.href = "map.html";
+}
+function instructions() {
+window.location.href = "instr.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,726 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>HTML5 Canvas Images</title>
+        <link rel="stylesheet" href="styles/layout.css" type="text/css" />
+		
+	</head>
+	
+	<body onload="playSound();">
+		<div class="wrapper col1">
+              <div id="topbar">
+              </div>
+            </div>
+            <div class="wrapper col2">
+              <div id="header">
+                <div id="logo">
+                  <h1><a href="#">Get Hooked</a></h1>
+      <p>A learning fishing game for the state of Massachussetts</p>
+                </div>
+                 
+              </div>
+            </div>
+        <div>
+			<canvas id="canvas" width=1024 height=566 style="margin:85px 0 0 100px"  >
+			Your browser doesn't support HTML5 Canvas
+			</canvas>
+			
+		</div>
+          <audio id="noise"></audio>
+          <img id="tBar" src="images/top.png"  />
+          <img id="bBar" src="images/bottom.png"  /> 
+          <textarea id="bud" type="text"  readonly></textarea>
+          <textarea id="tar1" type="text" readonly></textarea>
+          <textarea id="tar2" type="text" readonly></textarea>
+          <textarea id="tar3" type="text" readonly></textarea>
+          <textarea id="tar4" type="text" readonly></textarea>
+          <textarea id="bait1" type="text" readonly>0</textarea> 
+          <textarea id="bait2" type="text" readonly>0</textarea> 
+          <img id="For" onclick="Forward()" src="images/map.gif"  />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript">
+		
+		function playSound(){
+			var snd=document.getElementById('noise');
+			canPlayMP3 = (typeof snd.canPlayType === "function" && snd.canPlayType("audio/mpeg") !== "");
+			snd.src=canPlayMP3?'gImages/Deep Ocean Underwater Ambience.mp3':'shorttones.ogg';
+			snd.load();
+			snd.play();
+		}
+		
+			var canvas= document.getElementById("canvas");
+			var ctx= canvas.getContext("2d");
+			var width=1024;
+			var height=566;
+			var ta1 = 0;
+			var ta2 = 0;
+			var bait = 0; 
+			
+			
+			(function (global) {
+			document.getElementById("bud").innerHTML = global.localStorage.getItem("budget");
+			document.getElementById("tar1").innerHTML = global.localStorage.getItem("targ1");
+			document.getElementById("tar2").innerHTML = global.localStorage.getItem("targ2");
+			document.getElementById("tar3").innerHTML = global.localStorage.getItem("targ3");
+			document.getElementById("tar4").innerHTML = global.localStorage.getItem("targ4");
+			document.getElementById("bait1").innerHTML = global.localStorage.getItem("bait1");
+			document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+			ta1 = global.localStorage.getItem("targ3");
+			ta2 = global.localStorage.getItem("targ4");
+			bait = global.localStorage.getItem("bait2");
+			rr = global.localStorage.getItem("equip");
+			if(rr == "young") window.location.href = "tangled.html";
+					
+		}(window));	
+			
+			function Forward() {
+		window.location.href = "map.html";
+}
+
+			
+			
+			var ta11 = ta1.substring(0,1);
+			var ta22 = ta2.substring(0,1);
+			var outof = ta1.substring(1);
+			var x = parseInt(ta11);
+			var z = parseInt(ta22);			
+			var target1 = x;
+			var target2 = z;
+			
+			var fish = new Image(); // defining the fish character
+			fish.src= 'gImages/sw2.png';
+			fish.onload = eventSheetLoaded;
+			var fish_x = -fish.width;
+			var fish_y = -fish.height;
+			var fish1 = new Image(); // defining the second fish character
+			fish1.src= 'gImages/sw1.png';
+			fish1.onload = eventSheetLoaded;
+			var fish_x1 = -fish1.width;
+			var fish_y1 = -fish1.height;
+			var fish2 = new Image(); // defining the third fish character
+			fish2.src= 'gImages/sw11.png';
+			fish2.onload = eventSheetLoaded;
+			var fish_x2 = -fish2.width;
+			var fish_y2 = -fish2.height;
+			var fish3 = new Image(); // defining the third fish character
+			fish3.src= 'gImages/sw11.png';
+			fish3.onload = eventSheetLoaded;
+			var fish_x3 = -fish3.width;
+			var fish_y3 = -fish3.height;
+			var fish4 = new Image(); // defining the fourth fish character
+			fish4.src= 'gImages/ex77.png';
+			fish4.onload = eventSheetLoaded;
+			var fish_x4 = -fish4.width;
+			var fish_y4 = -fish4.height;
+			var fish5 = new Image(); // defining the fifth fish character
+			fish5.src= 'gImages/ex55.png';
+			fish5.onload = eventSheetLoaded;
+			var fish_x5 = -fish5.width;
+			var fish_y5 = -fish5.height;
+			var fish6 = new Image(); // defining the sixth fish character
+			fish6.src= 'gImages/ex3.png';
+			fish6.onload = eventSheetLoaded;
+			var fish_x6 = -fish6.width;
+			var fish_y6 = -fish6.height;
+			var fish7 = new Image(); // defining the seventh fish character
+			fish7.src= 'gImages/ex7.png';
+			fish7.onload = eventSheetLoaded;
+			var fish_x7 = -fish7.width;
+			var fish_y7 = -fish7.height;			
+			var hook = new Image(); // the hook
+			hook.src= 'gImages/hook.png';
+			hook.onload = eventSheetLoaded;
+			var hook_x = 0;
+			var hook_y = 0;
+			var bgImg = new Image();	// Adding background image
+				bgImg.src = 'gImages/under_bg6.png';
+				bgImg.addEventListener('load', eventSheetLoaded, false);
+			p0 = {x:-200, y:550}; //defining the points of control for the curve
+			p1 = {x:300, y:450};
+			p2 = {x:900, y:550};
+			p3 = {x:1500, y:300};
+			player = {x:0, y:0, speed:.002, t:-0.1}; //defining the player variable
+			p01 = {x:0, y:380}; //defining the points of control for the second curve
+			p11 = {x:400, y:580};
+			p21 = {x:700, y:330};
+			p31 = {x:1300, y:380};
+			player1 = {x:0, y:0, speed:.002, t:-0.3}; //defining the player1 variable
+			p02 = {x:1300, y:580}; //defining the points of control for the second curve
+			p12 = {x:900, y:480};
+			p22 = {x:300, y:380};
+			p32 = {x:-200, y:580};
+			var player2 = {x:0, y:0, speed:.002, t:0}; //defining the player1 variable
+			p03 = {x:1500, y:300}; //defining the points of control for the third curve
+			p13 = {x:900, y:450};
+			p23 = {x:300, y:650};
+			p33 = {x:-200, y:350};
+			var player3 = {x:0, y:0, speed:.002, t:-0.3}; //defining the player1 variable
+			////////da----------------------
+			
+			p04 = {x:-200, y:100}; //defining the points of control for the curve
+			p14 = {x:300, y:150};
+			p24 = {x:900, y:350};
+			p34 = {x:1500, y:0};
+			var player4 = {x:0, y:0, speed:.002, t:-0.1}; //defining the player variable
+			p05 = {x:0, y:250}; //defining the points of control for the second curve
+			p15 = {x:400, y:150};
+			p25 = {x:700, y:0};
+			p35 = {x:1300, y:380};
+			var player5 = {x:0, y:0, speed:.002, t:-0.3}; //defining the player1 variable
+			p06 = {x:1300, y:380}; //defining the points of control for the second curve
+			p16 = {x:900, y:180};
+			p26 = {x:300, y:0};
+			p36 = {x:-200, y:180};
+			var player6 = {x:0, y:0, speed:.002, t:-0.4}; //defining the player1 variable
+			p07 = {x:1500, y:30}; //defining the points of control for the third curve
+			p17 = {x:900, y:350};
+			p27 = {x:300, y:150};
+			p37 = {x:-200, y:350};
+			var player7 = {x:0, y:0, speed:.002, t:-0.3}; //defining the player1 variable
+			
+			//-----------------------------
+	
+			var f1c = false;
+			var f2c = false;
+			var f3c = false;
+			var f4c = false;
+			var f5c = false;
+			var f6c = false;
+			var f7c = false;
+			var f8c = false;						
+			
+	
+			function Vertical_line(line_x,line_y) {
+				 ctx.moveTo(line_x, 0);
+				 ctx.lineTo(line_x, line_y);
+				 ctx.strokeStyle = "black";
+				 ctx.stroke();
+			   }
+
+   
+			
+			//Keyboard functions part1
+			rightDown = false;
+			leftDown = false;
+			upDown = false;
+			downDown = false;
+			
+			//set rightDown or leftDown if the right or left keys are down
+			function onKeyDown(evt) {
+			  if (evt.keyCode == 39) rightDown = true;
+			  else if (evt.keyCode == 37) leftDown = true;
+			  else if (evt.keyCode == 38) upDown = true;
+			  else if (evt.keyCode == 40) downDown = true;
+			}
+			
+			//and unset them when the right or left key is released
+			function onKeyUp(evt) {
+			  if (evt.keyCode == 39) rightDown = false;
+			  else if (evt.keyCode == 37) leftDown = false;
+			  else if (evt.keyCode == 38) upDown = false;
+			  else if (evt.keyCode == 40) downDown = false;
+			}
+			
+			$(document).keydown(onKeyDown);
+			$(document).keyup(onKeyUp);
+				
+			function eventSheetLoaded()
+			{
+				draw();
+			}
+			
+			function draw()
+			{	
+				
+				ctx.beginPath();
+				//ctx.rect(0,0,500,500);
+				ctx.fillStyle="ffee7f";
+				ctx.fill();
+				ctx.drawImage(bgImg, 0, 0);
+				
+				//curve number 1
+				 var t = player.t;
+
+      			 var cx = 3 * (p1.x - p0.x)
+		         var bx = 3 * (p2.x - p1.x) - cx;
+		         var ax = p3.x - p0.x - cx - bx;
+
+		         var cy = 3 * (p1.y - p0.y);
+      			 var by = 3 * (p2.y - p1.y) - cy;
+		         var ay = p3.y - p0.y - cy - by;
+
+		         var xt = ax*(t*t*t) + bx*(t*t) + cx*t + p0.x;
+
+		         var yt = ay*(t*t*t) + by*(t*t) + cy*t + p0.y;
+
+      			 player.t += player.speed;
+
+     			 if (player.t > 1) 
+     			 {
+         				player.t = 1;
+         		 }
+          
+	
+				player.x = xt-fish.width/2;
+      			player.y = yt-fish.height/2;				
+				
+				//curve number 2
+				var t1 = player1.t;
+
+      			 var cx1 = 3 * (p11.x - p01.x)
+		         var bx1 = 3 * (p21.x - p11.x) - cx1;
+		         var ax1 = p31.x - p01.x - cx1 - bx1;
+
+		         var cy1 = 3 * (p1.y - p0.y);
+      			 var by1 = 3 * (p2.y - p1.y) - cy1;
+		         var ay1 = p31.y - p01.y - cy1 - by1;
+
+		         var xt1 = ax1*(t1*t1*t1) + bx1*(t1*t1) + cx1*t1 + p01.x;
+
+		         var yt1 = ay1*(t1*t1*t1) + by1*(t1*t1) + cy1*t1 + p01.y;
+
+      			 player1.t += player1.speed;
+
+     			 if (player1.t > 1) 
+     			 {
+         				player1.t = 1;
+         		 }
+          
+	
+				player1.x = xt1-fish1.width/2;
+      			player1.y = yt1-fish1.height/2;
+
+				//curve number 3
+				 var t2 = player2.t;
+
+      			 var cx2 = 3 * (p12.x - p02.x)
+		         var bx2 = 3 * (p22.x - p12.x) - cx2;
+		         var ax2 = p32.x - p02.x - cx2 - bx2;
+
+		         var cy2 = 3 * (p12.y - p02.y);
+      			 var by2 = 3 * (p22.y - p12.y) - cy2;
+		         var ay2 = p32.y - p02.y - cy2 - by2;
+
+		         var xt2 = ax2*(t2*t2*t2) + bx2*(t2*t2) + cx2*t2 + p02.x;
+
+		         var yt2 = ay2*(t2*t2*t2) + by2*(t2*t2) + cy2*t2 + p02.y;
+
+      			 player2.t += player2.speed;
+
+     			 if (player2.t > 1) 
+     			 {
+         				player2.t = 1;
+         		 }
+          
+	
+				player2.x = xt2-fish2.width/2;
+      			player2.y = yt2-fish2.height/2;
+
+				//curve number 4
+				 var t3 = player3.t;
+
+      			 var cx3 = 3 * (p13.x - p03.x)
+		         var bx3 = 3 * (p23.x - p13.x) - cx3;
+		         var ax3 = p33.x - p03.x - cx3 - bx3;
+
+		         var cy3 = 3 * (p13.y - p03.y);
+      			 var by3 = 3 * (p23.y - p13.y) - cy3;
+		         var ay3 = p33.y - p03.y - cy3 - by3;
+
+		         var xt3 = ax3*(t3*t3*t3) + bx3*(t3*t3) + cx3*t3 + p03.x;
+
+		         var yt3 = ay3*(t3*t3*t3) + by3*(t3*t3) + cy3*t3 + p03.y;
+
+      			 player3.t += player3.speed;
+
+     			 if (player3.t > 1) 
+     			 {
+         				player3.t = 1;
+         		 }
+          
+	
+				player3.x = xt3-fish3.width/2;
+      			player3.y = yt3-fish3.height/2;
+				//curve number 5
+				 var t4 = player4.t;
+
+      			 var cx4 = 3 * (p14.x - p04.x)
+		         var bx4 = 3 * (p24.x - p14.x) - cx4;
+		         var ax4 = p34.x - p04.x - cx4 - bx4;
+
+		         var cy4 = 3 * (p14.y - p04.y);
+      			 var by4 = 3 * (p24.y - p14.y) - cy4;
+		         var ay4 = p34.y - p04.y - cy4 - by4;
+
+		         var xt4 = ax4*(t4*t4*t4) + bx4*(t4*t4) + cx4*t4 + p04.x;
+
+		         var yt4 = ay4*(t4*t4*t4) + by4*(t4*t4) + cy4*t4 + p04.y;
+
+      			 player4.t += player4.speed;
+
+     			 if (player4.t > 1) 
+     			 {
+         				player4.t = 1;
+         		 }
+          
+	
+				player4.x = xt4-fish4.width/2;
+      			player4.y = yt4-fish4.height/2;
+				//curve number 6
+				 var t5 = player5.t;
+
+      			 var cx5 = 3 * (p15.x - p05.x)
+		         var bx5 = 3 * (p25.x - p15.x) - cx5;
+		         var ax5 = p35.x - p05.x - cx5 - bx5;
+
+		         var cy5 = 3 * (p15.y - p05.y);
+      			 var by5 = 3 * (p25.y - p15.y) - cy5;
+		         var ay5 = p35.y - p05.y - cy5 - by5;
+
+		         var xt5 = ax5*(t5*t5*t5) + bx5*(t5*t5) + cx5*t5 + p05.x;
+
+		         var yt5 = ay5*(t5*t5*t5) + by5*(t5*t5) + cy5*t5 + p05.y;
+
+      			 player5.t += player5.speed;
+
+     			 if (player5.t > 1) 
+     			 {
+         				player5.t = 1;
+         		 }
+          
+	
+				player5.x = xt5-fish5.width/2;
+      			player5.y = yt5-fish5.height/2;
+				//curve number 7
+				 var t6 = player6.t;
+
+      			 var cx6 = 3 * (p16.x - p06.x)
+		         var bx6 = 3 * (p26.x - p16.x) - cx6;
+		         var ax6 = p36.x - p06.x - cx6 - bx6;
+
+		         var cy6 = 3 * (p16.y - p06.y);
+      			 var by6 = 3 * (p26.y - p16.y) - cy6;
+		         var ay6 = p36.y - p06.y - cy6 - by6;
+
+		         var xt6 = ax6*(t6*t6*t6) + bx6*(t6*t6) + cx6*t6 + p06.x;
+
+		         var yt6 = ay6*(t6*t6*t6) + by6*(t6*t6) + cy6*t6 + p06.y;
+
+      			 player6.t += player6.speed;
+
+     			 if (player6.t > 1) 
+     			 {
+         				player6.t = 1;
+         		 }
+          
+	
+				player6.x = xt6-fish6.width/2;
+      			player6.y = yt6-fish6.height/2;
+				//curve number 8
+				 var t7 = player7.t;
+
+      			 var cx7 = 3 * (p17.x - p07.x)
+		         var bx7 = 3 * (p27.x - p17.x) - cx7;
+		         var ax7 = p37.x - p07.x - cx7 - bx7;
+
+		         var cy7 = 3 * (p17.y - p07.y);
+      			 var by7 = 3 * (p27.y - p17.y) - cy7;
+		         var ay7 = p37.y - p07.y - cy7 - by7;
+
+		         var xt7 = ax7*(t7*t7*t7) + bx7*(t7*t7) + cx7*t7 + p07.x;
+
+		         var yt7 = ay7*(t7*t7*t7) + by7*(t7*t7) + cy7*t7 + p07.y;
+
+      			 player7.t += player7.speed;
+
+     			 if (player7.t > 1) 
+     			 {
+         				player7.t = 1;
+         		 }
+          
+	
+				player7.x = xt7-fish7.width/2;
+      			player7.y = yt7-fish7.height/2;
+				
+				//ctx.drawImage(fish,player.x,player.y);
+				
+				
+				//console.log(hook_x<=fish_x+fish.width);
+				/*(function (global) {
+    document.getElementById("save").addEventListener("click", function () {
+        global.localStorage.setItem("budget", document.getElementById("input").value);
+    }, false);
+}(window));*/
+				//collisions
+(function (global) {
+				if(bait == 0){
+					alert("Oops! You ran out of Bait!");
+					window.location.href = "map.html";
+				}else{
+					//colision for fish 1
+				if( hook_x>=player.x && hook_x<=player.x+fish.width && hook_y>=player.y && 
+				hook_y<=player.y+fish.height){
+				//Don't draw this fish
+				if(!f1c){
+				f1c = true;
+				bait -= 1;
+				if(target2 < 8)target2 += 1; 
+				var number = target2.toString();
+				var fin = number.concat(outof);
+				global.localStorage.setItem("bait2", bait);
+				global.localStorage.setItem("targ4", fin);	
+				document.getElementById("tar1").innerHTML = global.localStorage.getItem("targ1");
+				document.getElementById("tar4").innerHTML = global.localStorage.getItem("targ4");
+				document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+				}				
+				}else{
+					if(!f1c){
+						ctx.drawImage(fish,player.x,player.y);
+					}
+				}
+				//colision for fish 2								
+				if( hook_x>=player1.x && hook_x<=player1.x+fish1.width && hook_y>=player1.y && 
+				hook_y<=player1.y+fish1.height){
+				//Don't draw this fish
+				if(!f2c){
+				f2c = true;
+				bait -= 1;
+				if(target1 < 8)target1 += 1; 
+				var number = target1.toString();
+				var fin = number.concat(outof);
+				global.localStorage.setItem("bait2", bait);
+				global.localStorage.setItem("targ3", fin);	
+				document.getElementById("tar1").innerHTML = global.localStorage.getItem("targ1");
+				document.getElementById("tar3").innerHTML = global.localStorage.getItem("targ3");
+				document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+				}				
+				}else{
+					if(!f2c){
+						ctx.drawImage(fish1,player1.x,player1.y);
+					}
+				}
+				//colision for fish 3							
+				if( hook_x>=player2.x && hook_x<=player2.x+fish2.width && hook_y>=player2.y && 
+				hook_y<=player2.y+fish2.height){
+				//Don't draw this fish
+				if(!f3c){
+				f3c = true;
+				bait -= 1;
+				if(target1 < 8)target1 += 1; 
+				var number = target1.toString();
+				var fin = number.concat(outof);
+				global.localStorage.setItem("bait2", bait);
+				global.localStorage.setItem("targ3", fin);	
+				document.getElementById("tar1").innerHTML = global.localStorage.getItem("targ1");
+				document.getElementById("tar3").innerHTML = global.localStorage.getItem("targ3");
+				document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+				}
+				}else{
+					if(!f3c){
+						ctx.drawImage(fish2,player2.x,player2.y);
+					}
+				}		
+				//colision for fish 4							
+				if( hook_x>=player3.x && hook_x<=player3.x+fish3.width && hook_y>=player3.y && 
+				hook_y<=player3.y+fish3.height){
+				//Don't draw this fish
+				if(!f4c){
+				f4c = true;
+				bait -= 1;
+				if(target1 < 8)target1 += 1; 
+				var number = target1.toString();
+				var fin = number.concat(outof);
+				global.localStorage.setItem("bait2", bait);
+				global.localStorage.setItem("targ3", fin);	
+				document.getElementById("tar1").innerHTML = global.localStorage.getItem("targ1");
+				document.getElementById("tar3").innerHTML = global.localStorage.getItem("targ3");
+				document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+				}
+				}else{
+					if(!f4c){
+						ctx.drawImage(fish3,player3.x,player3.y);
+					}
+				}		
+				//colision for fish 5						
+				if( hook_x>=player4.x && hook_x<=player4.x+fish4.width && hook_y>=player4.y && 
+				hook_y<=player4.y+fish4.height){
+				//Don't draw this fish
+				if(!f5c){
+				f5c = true;
+				bait -= 1;
+				global.localStorage.setItem("bait2", bait);	
+				document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+				}
+				}else{
+					if(!f5c){
+						ctx.drawImage(fish4,player4.x,player4.y);
+					}
+				}
+				//colision for fish 6							
+				if( hook_x>=player5.x && hook_x<=player5.x+fish5.width && hook_y>=player5.y && 
+				hook_y<=player5.y+fish5.height){
+				//Don't draw this fish
+				if(!f6c){
+				f6c = true;
+				bait -= 1;
+				global.localStorage.setItem("bait2", bait);	
+				document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+				var x = document.getElementById("bud").innerHTML.substring(1);
+				var z = parseInt(x);
+				if(z >= 25) {
+					var y = z-25;
+					var nB = "$" + y;
+					global.localStorage.setItem("budget", nB);
+					rightDown = false;
+					leftDown = false;
+					upDown = false;
+					downDown = false;
+					alert("Oh No! A ranger saw you catch that endangered fish. You have to pay a $25 fine");
+					document.getElementById("bud").innerHTML = global.localStorage.getItem("budget");
+				}else{
+					rightDown = false;
+					leftDown = false;
+					upDown = false;
+					downDown = false;
+					alert("Oh No! A ranger saw you catch that endangered fish. You have to pay a $25 fine");
+					alert("Wait, what do you mean you don't have enough money to pay the fine?! Your liscence is withdrawn!");
+					window.location.href = "lose.html";
+					}
+				}
+				}else{
+					if(!f6c){
+						ctx.drawImage(fish5,player5.x,player5.y);
+					}
+				}
+				//colision for fish 7							
+				if( hook_x>=player6.x && hook_x<=player6.x+fish6.width && hook_y>=player6.y && 
+				hook_y<=player6.y+fish6.height){
+				//Don't draw this fish
+				if(!f7c){
+				f7c = true;
+				bait -= 1;
+				global.localStorage.setItem("bait2", bait);	
+				document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+				}
+				}else{
+					if(!f7c){
+						ctx.drawImage(fish6,player6.x,player6.y);
+					}
+				}			
+				//colision for fish 8					
+				if( hook_x>=player7.x && hook_x<=player7.x+fish7.width && hook_y>=player7.y && 
+				hook_y<=player7.y+fish7.height){
+				//Don't draw this fish
+				if(!f8c){
+				f8c = true;
+				bait -= 1;
+				global.localStorage.setItem("bait2", bait);	
+				document.getElementById("bait2").innerHTML = global.localStorage.getItem("bait2");
+				}
+				}else{
+					if(!f8c){
+						ctx.drawImage(fish7,player7.x,player7.y);
+					}
+				}
+				}
+				
+        
+}(window));				
+				
+								
+						
+				
+				if(player.x > 1324){	
+					p0 = {x:-200, y:550}; //defining the points of control for the curve
+					p1 = {x:300, y:450};
+					p2 = {x:900, y:550};
+					p3 = {x:1500, y:300};
+					player = {x:0, y:0, speed:.002, t:-0.1}; //defining the player variable
+				}
+				if(player1.x > 1124){	
+					p01 = {x:0, y:350}; //defining the points of control for the second curve
+					p11 = {x:300, y:300};
+					p21 = {x:900, y:500};
+					p31 = {x:1300, y:300};
+					player1 = {x:0, y:0, speed:.002, t:0}; //defining the player1 variable
+				}
+				if(player2.x < -200){	
+					p02 = {x:1300, y:580}; //defining the points of control for the second curve
+					p12 = {x:900, y:480};
+					p22 = {x:300, y:380};
+					p32 = {x:-200, y:580};
+					player2 = {x:0, y:0, speed:.002, t:0}; //defining the player1 variable
+				}
+				if(player3.x < -250){	
+					p03 = {x:1500, y:300}; //defining the points of control for the third curve
+					p13 = {x:900, y:450};
+					p23 = {x:300, y:650};
+					p33 = {x:-250, y:350};
+					player3 = {x:0, y:0, speed:.002, t:-0.3}; //defining the player1 variable
+				}
+				if(player4.x > 1424){
+					p04 = {x:-200, y:100}; //defining the points of control for the curve
+					p14 = {x:300, y:150};
+					p24 = {x:900, y:350};
+					p34 = {x:1500, y:0};
+					player4 = {x:0, y:0, speed:.002, t:-0.1}; //defining the player variable	
+				}
+				if(player5.x > 1124){	
+					p05 = {x:0, y:250}; //defining the points of control for the second curve
+					p15 = {x:400, y:150};
+					p25 = {x:700, y:0};
+					p35 = {x:1300, y:380};
+					player5 = {x:0, y:0, speed:.002, t:-0.3}; //defining the player1 variable
+				}
+				if(player6.x < -200){	
+					p06 = {x:1300, y:380}; //defining the points of control for the second curve
+					p16 = {x:900, y:180};
+					p26 = {x:300, y:0};
+					p36 = {x:-200, y:180};
+					player6 = {x:0, y:0, speed:.002, t:-0.4}; //defining the player1 variable
+				}
+				if(player7.x < -100){	
+					p07 = {x:1500, y:30}; //defining the points of control for the third curve
+					p17 = {x:900, y:350};
+					p27 = {x:300, y:150};
+					p37 = {x:-200, y:350};
+					player7 = {x:0, y:0, speed:.002, t:-0.3}; //defining the player1 variable
+				}
+	
+
+				
+				
+				
+				if (rightDown && hook_x < 988) hook_x += 5;
+				else if (leftDown && hook_x >= 0) hook_x -= 5;
+				else if (upDown && hook_y >= 0) hook_y -= 5;
+				else if (downDown && hook_y < 506)hook_y += 5;
+				ctx.drawImage(hook,hook_x,hook_y);
+				Vertical_line(hook_x+30,hook_y);
+				
+				
+
+			
+			
+			}// end of draw function
+			
+			
+			function gameLoop() 
+			{
+     			window.setTimeout(gameLoop, 20);
+     			
+     			draw();
+     			
+     			
+   			}// end of gameLoop()
+   			
+   			gameLoop();
+   			
+		</script>
+
+			
+			
+	</body>
+
+</html>
